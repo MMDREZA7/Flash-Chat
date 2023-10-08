@@ -62,9 +62,12 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     fontWeight: FontWeight.w900,
                     color: Colors.white,
                   ),
-                  child: AnimatedTextKit(animatedTexts: [
-                    TypewriterAnimatedText('Flash Chat'),
-                  ]),
+                  child: AnimatedTextKit(
+                    totalRepeatCount: 7,
+                    animatedTexts: [
+                      TypewriterAnimatedText('Flash Chat'),
+                    ],
+                  ),
                 ),
                 // const Text(
                 //   'Flash Chat',
@@ -80,20 +83,26 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               height: 48.0,
             ),
             //Login
-            RoundedButton(
-              color: kLoginButtonColor,
-              onPressed: () {
-                Navigator.pushNamed(context, LoginScreen.id);
-              },
-              title: 'Login',
+            Hero(
+              tag: 'log',
+              child: RoundedButton(
+                color: kLoginButtonColor,
+                onPressed: () {
+                  Navigator.pushNamed(context, LoginScreen.id);
+                },
+                title: 'Login',
+              ),
             ),
             //Register
-            RoundedButton(
-              color: kRegisterButtonColor,
-              title: 'Register',
-              onPressed: () {
-                Navigator.pushNamed(context, RegistrationScreen.id);
-              },
+            Hero(
+              tag: 'register',
+              child: RoundedButton(
+                color: kRegisterButtonColor,
+                title: 'Register',
+                onPressed: () {
+                  Navigator.pushNamed(context, RegistrationScreen.id);
+                },
+              ),
             ),
           ],
         ),

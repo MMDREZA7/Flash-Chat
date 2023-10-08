@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flash_chat_starting_project/components/rounded_button.dart';
 
 import '/constants.dart';
@@ -30,58 +31,62 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(
               height: 48.0,
             ),
-            TextField(
-              decoration: const InputDecoration(
+            TextFormField(
+              decoration: kTextFieldDecoration.copyWith(
                 hintText: 'Enter your email',
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blue, width: 1.0),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.lightBlue, width: 2.0),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                label: const Text(
+                  'Email',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (email) {
+                return email != null && EmailValidator.validate(email)
+                    ? null
+                    : 'Please enter a valid email example: flash@gmail.com';
+              },
               onChanged: (value) {
                 //Do something with the user input
               },
             ),
             const SizedBox(
-              height: 16,
+              height: 15,
             ),
-            TextField(
-              decoration: const InputDecoration(
+            TextFormField(
+              decoration: kTextFieldDecoration.copyWith(
                 hintText: 'Enter your password',
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blue, width: 1.0),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.lightBlue, width: 2.0),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                label: const Text(
+                  'password',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
+              obscureText: true,
               onChanged: (value) {
                 //Do something with the user input
+              },
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (password) {
+                return password != null && password.length > 5
+                    ? null
+                    : 'The Password shoud be of 6 characters at least.';
               },
             ),
             const SizedBox(
               height: 24.0,
             ),
-            RoundedButton(
-              color: kLoginButtonColor,
-              title: 'Login',
-              onPressed: () {},
+            Hero(
+              tag: 'log',
+              child: RoundedButton(
+                color: kLoginButtonColor,
+                title: 'Login',
+                onPressed: () {},
+              ),
             ),
             const SizedBox(height: 12),
             IconButton(
