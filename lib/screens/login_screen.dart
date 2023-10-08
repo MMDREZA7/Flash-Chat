@@ -1,8 +1,18 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flash_chat_starting_project/components/rounded_button.dart';
+import 'package:flash_chat_starting_project/screens/chat_screen.dart';
 
 import '/constants.dart';
 import 'package:flutter/material.dart';
+
+// import 'package:firebase_core/firebase_core.dart';
+// import 'firebase_options.dart';
+
+// // ...
+
+// await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+// );
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -85,7 +95,9 @@ class _LoginScreenState extends State<LoginScreen> {
               child: RoundedButton(
                 color: kLoginButtonColor,
                 title: 'Login',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, ChatScreen.id);
+                },
               ),
             ),
             const SizedBox(height: 12),

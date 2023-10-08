@@ -63,7 +63,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     color: Colors.white,
                   ),
                   child: AnimatedTextKit(
-                    totalRepeatCount: 7,
+                    totalRepeatCount: 2,
                     animatedTexts: [
                       TypewriterAnimatedText('Flash Chat'),
                     ],
